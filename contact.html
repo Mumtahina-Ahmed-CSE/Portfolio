@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let's Connect — Mumtahina Ahmed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    [data-theme="dark"] {
+      --bg: #080a0f; --bg2: #0f1219; --bg3: #1a2035;
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff; --text-sub: #e2e8f0; --text-muted: #d1d9e6;
+      --nav-bg: rgba(8,10,15,0.88);
+      --card-bg: rgba(255,255,255,0.03);
+      --input-bg: #131720; --input-border: rgba(255,255,255,0.10);
+      --shadow: 0 24px 60px rgba(0,0,0,0.6);
+      --icon-bg: #1c2233; --icon-border: rgba(255,255,255,0.10);
+      --dock-bg: rgba(18,22,32,0.92); --dock-border: rgba(255,255,255,0.12);
+      --dock-icon: rgba(255,255,255,0.55); --dock-icon-active: #ffffff;
+      --dock-active-bg: rgba(16,185,129,0.18); --dock-active-border: rgba(16,185,129,0.45);
+      --card-surface: #0d1220;
+      --meta-icon: #6b7280;
+
+      --green: #10b981;
+      --green-bg: rgba(16,185,129,0.14);
+      --green-badge-bg: rgba(16,185,129,0.18);
+      --green-tag-bg: rgba(16,185,129,0.11);
+      --green-tag-border: rgba(16,185,129,0.28);
+      --green-glow: rgba(16,185,129,0.20);
+      --green-hover-border: rgba(16,185,129,0.35);
+    }
+
+    [data-theme="light"] {
+      --bg: #f4f6fb; --bg2: #ffffff; --bg3: #eef1f8;
+      --border: rgba(0,0,0,0.09);
+      --text: #0a0f1e; --text-sub: #1e293b; --text-muted: #334155;
+      --nav-bg: rgba(244,246,251,0.92);
+      --card-bg: rgba(0,0,0,0.025);
+      --input-bg: #f8f9ff; --input-border: rgba(0,0,0,0.12);
+      --shadow: 0 24px 60px rgba(0,0,0,0.10);
+      --icon-bg: #e8edf8; --icon-border: rgba(0,0,0,0.10);
+      --dock-bg: rgba(255,255,255,0.88); --dock-border: rgba(0,0,0,0.12);
+      --dock-icon: rgba(30,41,59,0.5); --dock-icon-active: #0a0f1e;
+      --dock-active-bg: rgba(4,120,87,0.10); --dock-active-border: rgba(4,120,87,0.40);
+      --card-surface: #ffffff;
+      --meta-icon: #94a3b8;
+
+      --green: #047857;
+      --green-bg: rgba(4,120,87,0.12);
+      --green-badge-bg: rgba(4,120,87,0.14);
+      --green-tag-bg: rgba(4,120,87,0.10);
+      --green-tag-border: rgba(4,120,87,0.40);
+      --green-glow: rgba(4,120,87,0.15);
+      --green-hover-border: rgba(4,120,87,0.40);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; overflow-x: hidden; transition: background 0.35s, color 0.35s; }
+
+    body::before { content: ''; position: fixed; inset: 0; z-index: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.45; pointer-events: none; }
+    body::after  { content: ''; position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 45% at 75% 15%, rgba(16,185,129,0.10) 0%, transparent 65%), radial-gradient(ellipse 35% 30% at 15% 85%, rgba(16,185,129,0.06) 0%, transparent 60%); pointer-events: none; }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 44px; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background 0.35s, border-color 0.35s; }
+    .nav-brand { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+    .nav-logo { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-label-top { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; color: var(--text); }
+    .nav-label-bot { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.04em; }
+    .toggle-btn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.25s; position: relative; overflow: hidden; }
+    .toggle-btn:hover { border-color: #10b981; box-shadow: 0 0 16px rgba(16,185,129,0.25); }
+    .toggle-btn .icon-sun, .toggle-btn .icon-moon { position: absolute; transition: transform 0.35s, opacity 0.35s; }
+    [data-theme="dark"]  .icon-sun  { opacity: 1; transform: scale(1); }
+    [data-theme="dark"]  .icon-moon { opacity: 0; transform: scale(0.4) rotate(-90deg); }
+    [data-theme="light"] .icon-sun  { opacity: 0; transform: scale(0.4) rotate(90deg); }
+    [data-theme="light"] .icon-moon { opacity: 1; transform: scale(1); }
+
+    /* ── DOCK ── */
+    .dock-wrap { position: fixed; top: 82px; left: 50%; transform: translateX(-50%); z-index: 90; animation: fadeDown 0.5s 0.2s ease both; }
+    .dock { display: flex; align-items: center; gap: 4px; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 999px; padding: 8px 14px; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2); transition: background 0.35s, border-color 0.35s; }
+    .dock-item { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid transparent; background: transparent; cursor: pointer; transition: all 0.22s; text-decoration: none; position: relative; color: var(--dock-icon); }
+    .dock-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .dock-item:hover { color: var(--dock-icon-active); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .dock-item.active { color: #34d399; background: var(--dock-active-bg); border-color: var(--dock-active-border); }
+    [data-theme="light"] .dock-item.active { color: #047857; }
+    .dock-item .dock-tip { position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); color: var(--text); font-size: 11px; font-weight: 500; white-space: nowrap; padding: 4px 10px; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity 0.18s; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .dock-item:hover .dock-tip { opacity: 1; }
+    .dock-divider { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+
+    /* ── PAGE ── */
+    .page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 90px 44px 80px; }
+
+    .page-header { text-align: center; margin-bottom: 52px; animation: fadeUp 0.5s ease both; }
+    .page-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); border-radius: 999px; padding: 5px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #10b981; letter-spacing: 0.05em; margin-bottom: 22px; }
+    [data-theme="light"] .page-tag { background: rgba(4,120,87,0.10); border-color: rgba(4,120,87,0.40); color: #047857; }
+    .page-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: blink 2s ease-in-out infinite; }
+    .page-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(34px,5vw,54px); line-height: 1.08; letter-spacing: -0.03em; color: var(--text); margin-bottom: 18px; }
+    .page-title .green { color: #10b981; }
+    [data-theme="light"] .page-title .green { color: #047857; }
+    .page-sub { font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 540px; margin: 0 auto; font-weight: 300; }
+
+    /* ── GRID ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 28px; align-items: start; animation: fadeUp 0.5s 0.1s ease both; }
+    .info-col { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ── INFO CARDS ── */
+    .info-card { background: var(--card-surface); border: 1px solid var(--border); border-radius: 18px; padding: 22px; transition: border-color 0.25s, box-shadow 0.25s; }
+    .info-card:hover { border-color: var(--green-hover-border); box-shadow: 0 8px 32px var(--green-glow); }
+    .info-card-label { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+    .info-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; text-decoration: none; color: var(--text); transition: color 0.2s; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-row:hover { color: var(--green); }
+
+    .info-ico { width: 34px; height: 34px; flex-shrink: 0; background: var(--icon-bg); border: 1px solid var(--icon-border); border-radius: 9px; display: flex; align-items: center; justify-content: center; transition: all 0.22s; }
+    .info-ico svg { width: 15px; height: 15px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .info-row:hover .info-ico { border-color: var(--green); background: var(--green-bg); box-shadow: 0 0 10px var(--green-glow); }
+
+    .info-text-main { font-size: 15px; font-weight: 500; }
+    .info-text-sub  { font-size: 13px; color: var(--text-muted); margin-top: 1px; }
+
+    .social-row { display: flex; gap: 10px; margin-top: 4px; }
+    .social-btn { width: 40px; height: 40px; border-radius: 10px; background: var(--icon-bg); border: 1px solid var(--icon-border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.22s; }
+    .social-btn svg { width: 17px; height: 17px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .social-btn:hover { border-color: var(--green); background: var(--green-bg); box-shadow: 0 0 12px var(--green-glow); transform: translateY(-2px); }
+
+    /* ── FORM CARD ── */
+    .form-card { background: var(--card-surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 32px 28px; box-shadow: var(--shadow); }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-label { font-size: 15px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
+    .form-label .req { color: var(--green); }
+    .form-label .opt { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+
+    .form-input, .form-textarea { background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 10px; padding: 13px 16px; font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.22s, box-shadow 0.22s; width: 100%; }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-input:focus, .form-textarea:focus { border-color: rgba(16,185,129,0.5); box-shadow: 0 0 0 3px rgba(16,185,129,0.10); }
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+    .send-btn { width: 100%; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 28px; border-radius: 13px; background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #fff; font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 4px 22px rgba(16,185,129,0.40); transition: all 0.25s; }
+    .send-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .send-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(16,185,129,0.55); filter: brightness(1.08); }
+    .send-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    [data-theme="light"] .send-btn { background: linear-gradient(135deg, #047857 0%, #059669 100%); }
+
+    .form-note { text-align: center; margin-top: 14px; font-size: 14px; color: var(--text-muted); }
+
+    /* ── SUCCESS ── */
+    .success-msg { display: none; text-align: center; padding: 40px 20px; }
+    .success-msg .check { width: 56px; height: 56px; border-radius: 50%; background: var(--green-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .success-msg .check svg { width: 28px; height: 28px; stroke: var(--green); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-msg h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .success-msg p  { font-size: 16px; color: var(--text-muted); line-height: 1.6; }
+
+    @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateX(-50%) translateY(-10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+    @keyframes blink    { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    @media (max-width: 860px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .page { padding: 90px 18px 60px; }
+      nav { padding: 14px 18px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .dock { gap: 2px; padding: 7px 10px; }
+      .dock-item { width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="portfolio.png" style="width:36px;height:36px;object-fit:contain;" alt="Portfolio icon"></div>
+      <div><div class="nav-label-top">Portfolio</div><div class="nav-label-bot">Mumtahina Ahmed</div></div>
+    </a>
+    <button class="toggle-btn" id="themeToggle" title="Toggle light / dark mode">
+      <span class="icon-sun">☀️</span>
+      <span class="icon-moon">🌙</span>
+    </button>
+  </nav>
+
+  <div class="dock-wrap">
+    <div class="dock">
+      <a class="dock-item" href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+        <span class="dock-tip">Home</span>
+      </a>
+      <a class="dock-item" href="education.html">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5"/></svg>
+        <span class="dock-tip">Education</span>
+      </a>
+      <a class="dock-item" href="experience.html">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>
+        <span class="dock-tip">Experience</span>
+      </a>
+      <a class="dock-item" href="skills.html">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span class="dock-tip">Technical Skills</span>
+      </a>
+      <a class="dock-item" href="projects.html">
+        <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        <span class="dock-tip">Projects</span>
+      </a>
+      <a class="dock-item" href="achievements.html">
+        <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span class="dock-tip">Achievements</span>
+      </a>
+      <div class="dock-divider"></div>
+      <a class="dock-item" href="certifications.html">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span class="dock-tip">Certifications</span>
+      </a>
+      <a class="dock-item" href="blog.html">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span class="dock-tip">Tech Blog</span>
+      </a>
+      <a class="dock-item" href="passions.html">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="dock-tip">Passions</span>
+      </a>
+      <a class="dock-item active" href="contact.html">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="dock-tip">Contact</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="page-header">
+      <div class="page-tag">
+        <span class="page-tag-dot"></span>
+        AVAILABLE FOR OPPORTUNITIES
+      </div>
+      <h1 class="page-title">Let's <span class="green">Connect</span></h1>
+      <p class="page-sub">I'm always open to discussing new opportunities, collaborations, or just having a conversation about technology and innovation.</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- LEFT INFO COL -->
+      <div class="info-col">
+
+        <div class="info-card">
+          <div class="info-card-label">Contact Details</div>
+          <a class="info-row" href="tel:+13063703497">
+            <div class="info-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.1 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="info-text-main">+1 306 370 3497</div></div>
+          </a>
+          <a class="info-row" href="/cdn-cgi/l/email-protection#9bf6eef6effaf3f2f5fab5faf3f6feffb5f8e8dbfcf6faf2f7b5f8f4f6">
+            <div class="info-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="info-text-main"><span class="__cf_email__" data-cfemail="e18c948c958089888f80cf80898c8485cf8292a1868c80888dcf828e8c">mumtahina.ahmed.cs@gmail.com</span></div></div>
+          </a>
+          <div class="info-row" style="cursor:default;">
+            <div class="info-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="info-text-main">Saskatoon, SK, Canada</div></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-label">Find Me Online</div>
+          <div class="social-row">
+            <a class="social-btn" href="https://linkedin.com/in/mumtahina-ahmed" target="_blank" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a class="social-btn" href="https://github.com/Mumtahina-Ahmed-CSE" target="_blank" title="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-label">Response Time</div>
+          <div class="info-row" style="cursor:default;">
+            <div class="info-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><div class="info-text-main">Within 24–48 hours</div><div class="info-text-sub">Typical email response time</div></div>
+          </div>
+        </div>
+
+      </div><!-- /info-col -->
+
+      <!-- RIGHT FORM -->
+      <div class="form-card">
+        <div id="formArea">
+          <form
+            id="contactForm"
+            action="https://formsubmit.co/mumtahina.ahmed.cs@gmail.com"
+            method="POST"
+            onsubmit="handleSubmit(event)"
+          >
+            <input type="hidden" name="_subject"  value="New Portfolio Contact Message">
+            <input type="hidden" name="_captcha"  value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next"     value="">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label class="form-label" for="fname">Name <span class="req">*</span></label>
+                <input class="form-input" type="text" id="fname" name="name" placeholder="Your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="femail">Email <span class="req">*</span></label>
+                <input class="form-input" type="email" id="femail" name="email" placeholder="you@company.com" required>
+              </div>
+
+              <div class="form-group full">
+                <label class="form-label" for="fsubject">Subject <span class="opt">(Optional)</span></label>
+                <input class="form-input" type="text" id="fsubject" name="subject" placeholder="Project Inquiry, Collaboration...">
+              </div>
+
+              <div class="form-group full">
+                <label class="form-label" for="fmessage">Message <span class="req">*</span></label>
+                <textarea class="form-textarea" id="fmessage" name="message" placeholder="Tell me about your goals, timeline, and what you're looking for..." required></textarea>
+              </div>
+
+            </div>
+
+            <button class="send-btn" type="submit" id="sendBtn">
+              <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Message
+            </button>
+
+          </form>
+          <p class="form-note">I'm open to new opportunities, collaborations, and conversations about technology &amp; innovation.</p>
+        </div>
+
+        <div class="success-msg" id="successMsg">
+          <div class="check">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Message Sent! 🎉</h3>
+          <p>Thanks for reaching out.<br>I'll get back to you within 24–48 hours.</p>
+        </div>
+      </div>
+
+    </div><!-- /contact-grid -->
+  </div><!-- /page -->
+
+  <script>
+    // Theme toggle
+    (function() {
+      const toggle = document.getElementById('themeToggle');
+      const root   = document.documentElement;
+      const saved  = localStorage.getItem('portfolio-theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      toggle.addEventListener('click', function() {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('portfolio-theme', next);
+      });
+    })();
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn  = document.getElementById('sendBtn');
+      const form = document.getElementById('contactForm');
+      btn.disabled  = true;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg> Sending...';
+      try {
+        const data = new FormData(form);
+        const res  = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok || res.status === 200) {
+          document.getElementById('formArea').style.display   = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+        } else { throw new Error('Failed'); }
+      } catch {
+        btn.disabled  = false;
+        btn.innerHTML = '<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+        alert('Something went wrong. Please email me directly at mumtahina.ahmed.cs@gmail.com');
+      }
+    }
+
+    const style = document.createElement('style');
+    style.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+    document.head.appendChild(style);
+  </script>
+
+</body>
+</html>

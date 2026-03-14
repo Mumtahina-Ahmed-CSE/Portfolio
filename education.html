@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education — Mumtahina Ahmed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+
+    [data-theme="dark"] {
+      --bg: #080a0f; --bg2: #0f1219; --bg3: #1a2035;
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff; --text-sub: #e2e8f0; --text-muted: #d1d9e6;
+      --blue: #3b82f6; --blue-bright: #60a5fa; --blue-glow: rgba(59,130,246,0.20);
+      --card-bg: rgba(255,255,255,0.03); --nav-bg: rgba(8,10,15,0.88);
+      --shadow: 0 24px 60px rgba(0,0,0,0.6);
+      --icon-bg: #1c2233; --icon-border: rgba(255,255,255,0.10);
+      --dock-bg: rgba(18,22,32,0.92); --dock-border: rgba(255,255,255,0.12);
+      --dock-icon: rgba(255,255,255,0.55); --dock-icon-active: #ffffff;
+      --dock-active-bg: rgba(59,130,246,0.18); --dock-active-border: rgba(59,130,246,0.45);
+      --card-surface: #0d1220;
+      --meta-icon: #6b7280;
+
+      /* Dark-mode colored tokens */
+      --green: #10b981;
+      --green-bg: rgba(16,185,129,0.14);
+      --green-badge-bg: rgba(16,185,129,0.18);
+      --green-tag-bg: rgba(16,185,129,0.11);
+      --green-tag-border: rgba(16,185,129,0.28);
+      --green-dot: rgba(16,185,129,0.75);
+      --green-hover-border: rgba(16,185,129,0.35);
+
+      --purple: #c084fc;
+      --purple-bg: rgba(192,132,252,0.14);
+      --purple-badge-bg: rgba(192,132,252,0.18);
+      --purple-tag-bg: rgba(192,132,252,0.11);
+      --purple-tag-border: rgba(192,132,252,0.28);
+      --purple-dot: rgba(192,132,252,0.75);
+      --purple-hover-border: rgba(192,132,252,0.35);
+    }
+    [data-theme="light"] {
+      --bg: #f4f6fb; --bg2: #ffffff; --bg3: #eef1f8;
+      --border: rgba(0,0,0,0.09);
+      --text: #0a0f1e; --text-sub: #1e293b; --text-muted: #334155;
+      --blue: #2563eb; --blue-bright: #3b82f6; --blue-glow: rgba(59,130,246,0.12);
+      --card-bg: rgba(0,0,0,0.025); --nav-bg: rgba(244,246,251,0.92);
+      --shadow: 0 24px 60px rgba(0,0,0,0.10);
+      --icon-bg: #e8edf8; --icon-border: rgba(0,0,0,0.10);
+      --dock-bg: rgba(255,255,255,0.88); --dock-border: rgba(0,0,0,0.12);
+      --dock-icon: rgba(30,41,59,0.5); --dock-icon-active: #0a0f1e;
+      --dock-active-bg: rgba(59,130,246,0.10); --dock-active-border: rgba(59,130,246,0.35);
+      --card-surface: #ffffff;
+      --meta-icon: #94a3b8;
+
+      /* Light-mode colored tokens — richer/darker for readability */
+      --green: #047857;
+      --green-bg: rgba(4,120,87,0.12);
+      --green-badge-bg: rgba(4,120,87,0.14);
+      --green-tag-bg: rgba(4,120,87,0.10);
+      --green-tag-border: rgba(4,120,87,0.40);
+      --green-dot: rgba(4,120,87,0.85);
+      --green-hover-border: rgba(4,120,87,0.40);
+
+      --purple: #7c3aed;
+      --purple-bg: rgba(124,58,237,0.10);
+      --purple-badge-bg: rgba(124,58,237,0.12);
+      --purple-tag-bg: rgba(124,58,237,0.08);
+      --purple-tag-border: rgba(124,58,237,0.38);
+      --purple-dot: rgba(124,58,237,0.80);
+      --purple-hover-border: rgba(124,58,237,0.38);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; overflow-x: hidden; transition: background 0.35s, color 0.35s; }
+    body::before { content: ''; position: fixed; inset: 0; z-index: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 48px 48px; opacity: 0.45; pointer-events: none; }
+    body::after { content: ''; position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 45% at 75% 15%, rgba(59,130,246,0.13) 0%, transparent 65%), radial-gradient(ellipse 35% 30% at 15% 85%, rgba(59,130,246,0.07) 0%, transparent 60%); pointer-events: none; }
+
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 44px; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background 0.35s, border-color 0.35s; }
+    .nav-brand { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+    .nav-logo { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-label-top { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; color: var(--text); }
+    .nav-label-bot { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.04em; }
+    .toggle-btn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.25s; position: relative; overflow: hidden; }
+    .toggle-btn:hover { border-color: var(--blue); box-shadow: 0 0 16px var(--blue-glow); }
+    .toggle-btn .icon-sun, .toggle-btn .icon-moon { position: absolute; transition: transform 0.35s, opacity 0.35s; }
+    [data-theme="dark"]  .icon-sun  { opacity: 1; transform: scale(1); }
+    [data-theme="dark"]  .icon-moon { opacity: 0; transform: scale(0.4) rotate(-90deg); }
+    [data-theme="light"] .icon-sun  { opacity: 0; transform: scale(0.4) rotate(90deg); }
+    [data-theme="light"] .icon-moon { opacity: 1; transform: scale(1); }
+
+    .dock-wrap { position: fixed; top: 82px; left: 50%; transform: translateX(-50%); z-index: 90; animation: fadeDown 0.5s 0.2s ease both; }
+    .dock { display: flex; align-items: center; gap: 4px; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 999px; padding: 8px 14px; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2); transition: background 0.35s, border-color 0.35s; }
+    .dock-item { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid transparent; background: transparent; cursor: pointer; transition: all 0.22s; text-decoration: none; position: relative; color: var(--dock-icon); }
+    .dock-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .dock-item:hover { color: var(--dock-icon-active); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .dock-item.active { color: #34d399; background: var(--dock-active-bg); border-color: var(--dock-active-border); }
+    [data-theme="light"] .dock-item.active { color: #047857; }
+    .dock-item .dock-tip { position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); color: var(--text); font-size: 11px; font-weight: 500; white-space: nowrap; padding: 4px 10px; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity 0.18s; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .dock-item:hover .dock-tip { opacity: 1; }
+    .dock-divider { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+
+    .page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 90px 44px 80px; }
+    .page-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); border-radius: 999px; padding: 5px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #10b981; letter-spacing: 0.05em; margin-bottom: 18px; }
+    [data-theme="light"] .page-tag { background: rgba(4,120,87,0.10); border-color: rgba(4,120,87,0.40); color: #047857; }
+    .page-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(32px,5vw,52px); line-height: 1.08; letter-spacing: -0.03em; color: var(--text); margin-bottom: 36px; }
+    .page-title .blue { color: #ffffff; }
+    [data-theme="light"] .page-title .blue { color: #0a0f1e; }
+
+    /* ── EDU CARD ── */
+    .edu-card {
+      background: var(--card-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 30px;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      animation: fadeUp 0.45s ease both;
+    }
+    .edu-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px;
+    }
+    .edu-card.usask::before     { background: linear-gradient(180deg, #10b981, #34d399); }
+    .edu-card.chittagong::before { background: linear-gradient(180deg, #c084fc, #e879f9); }
+    [data-theme="light"] .edu-card.usask::before     { background: linear-gradient(180deg, #047857, #10b981); }
+    [data-theme="light"] .edu-card.chittagong::before { background: linear-gradient(180deg, #7c3aed, #a855f7); }
+
+    .edu-card:hover { transform: translateY(-2px); box-shadow: 0 14px 44px rgba(0,0,0,0.28); }
+    .edu-card.usask:hover     { border-color: var(--green-hover-border); }
+    .edu-card.chittagong:hover { border-color: var(--purple-hover-border); }
+
+    .edu-top { display: flex; align-items: flex-start; gap: 16px; }
+
+    .edu-icon { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .edu-card.usask .edu-icon     { background: var(--green-bg); }
+    .edu-card.chittagong .edu-icon { background: var(--purple-bg); }
+    .edu-icon svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .edu-card.usask .edu-icon svg     { stroke: var(--green); }
+    .edu-card.chittagong .edu-icon svg { stroke: var(--purple); }
+
+    .edu-info { flex: 1; }
+
+    .edu-degree-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .edu-degree { font-size: 19px; font-weight: 700; color: var(--text); }
+    .edu-badge { font-size: 12px; font-weight: 600; padding: 3px 13px; border-radius: 999px; }
+    .edu-card.usask .edu-badge     { background: var(--green-badge-bg); color: var(--green); }
+    .edu-card.chittagong .edu-badge { background: var(--purple-badge-bg); color: var(--purple); }
+
+    .edu-inst-row { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+    .edu-inst-row svg { width: 15px; height: 15px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .edu-card.usask .edu-inst-row svg     { stroke: var(--green); }
+    .edu-card.chittagong .edu-inst-row svg { stroke: var(--purple); }
+    .edu-inst { font-size: 15.5px; font-weight: 700; }
+    .edu-card.usask .edu-inst     { color: var(--green); }
+    .edu-card.chittagong .edu-inst { color: var(--purple); }
+
+    .edu-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .edu-meta-item { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-muted); }
+    .edu-meta-item svg { width: 14px; height: 14px; stroke: var(--meta-icon); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    .edu-divider { height: 1px; background: var(--border); margin: 20px 0 18px; }
+
+    .edu-bullets { display: flex; flex-direction: column; gap: 11px; margin-bottom: 18px; }
+    .edu-bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #ffffff; line-height: 1.78; font-weight: 400; }
+    [data-theme="light"] .edu-bullet { color: #0a0f1e; }
+    .edu-bullet-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 9px; flex-shrink: 0; }
+    .edu-card.usask .edu-bullet-dot     { background: var(--green-dot); }
+    .edu-card.chittagong .edu-bullet-dot { background: var(--purple-dot); }
+
+    /* Grade strong text colors */
+    .edu-card.usask strong.grade     { color: var(--green) !important; }
+    .edu-card.chittagong strong.grade { color: var(--purple) !important; }
+
+    .tag { display: inline-block; font-size: 11.5px; font-family: 'JetBrains Mono', monospace; padding: 3px 10px; border-radius: 6px; margin: 3px 3px 3px 0; }
+    .tag.green  { background: var(--green-tag-bg); border: 1px solid var(--green-tag-border); color: var(--green); }
+    .tag.purple { background: var(--purple-tag-bg); border: 1px solid var(--purple-tag-border); color: var(--purple); }
+
+    @keyframes fadeUp  { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown{ from { opacity: 0; transform: translateX(-50%) translateY(-10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+    @media (max-width: 768px) {
+      .page { padding: 90px 18px 60px; }
+      nav { padding: 14px 18px; }
+      .dock { gap: 2px; padding: 7px 10px; }
+      .dock-item { width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="portfolio.png" style="width:36px;height:36px;object-fit:contain;" alt="icon"></div>
+      <div><div class="nav-label-top">Portfolio</div><div class="nav-label-bot">Mumtahina Ahmed</div></div>
+    </a>
+    <button class="toggle-btn" id="themeToggle"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+  </nav>
+
+  <div class="dock-wrap">
+    <div class="dock">
+      <a class="dock-item" href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+        <span class="dock-tip">Home</span>
+      </a>
+      <a class="dock-item active" href="education.html">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5"/></svg>
+        <span class="dock-tip">Education</span>
+      </a>
+      <a class="dock-item" href="experience.html">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>
+        <span class="dock-tip">Experience</span>
+      </a>
+      <a class="dock-item" href="skills.html">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span class="dock-tip">Technical Skills</span>
+      </a>
+      <a class="dock-item" href="projects.html">
+        <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        <span class="dock-tip">Projects</span>
+      </a>
+      <a class="dock-item" href="achievements.html">
+        <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span class="dock-tip">Achievements</span>
+      </a>
+      <div class="dock-divider"></div>
+      <a class="dock-item" href="certifications.html">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span class="dock-tip">Certifications</span>
+      </a>
+      <a class="dock-item" href="blog.html">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span class="dock-tip">Tech Blog</span>
+      </a>
+      <a class="dock-item" href="passions.html">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="dock-tip">Passions</span>
+      </a>
+      <a class="dock-item" href="contact.html">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="dock-tip">Contact</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="page-tag">ACADEMIC BACKGROUND</div>
+    <h1 class="page-title"><span class="blue">Education</span></h1>
+
+    <!-- ── USASK — green ── -->
+    <div class="edu-card usask" style="animation-delay:0s">
+      <div class="edu-top">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5"/></svg>
+        </div>
+        <div class="edu-info">
+          <div class="edu-degree-row">
+            <span class="edu-degree">Master of Science in Computer Science</span>
+            <span class="edu-badge">Graduate</span>
+          </div>
+          <div class="edu-inst-row">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="edu-inst">University of Saskatchewan</span>
+          </div>
+          <div class="edu-meta">
+            <span class="edu-meta-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Sep. 2023 – Dec. 2025
+            </span>
+            <span class="edu-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Saskatoon, Canada
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-divider"></div>
+
+      <div class="edu-bullets">
+        <div class="edu-bullet"><span class="edu-bullet-dot"></span><span>Research conducted at the Software Research Lab under the supervision of Prof. Dr. Chanchal Roy, focused on Software Testing, Software Maintainability, Mining Software Repositories, Software Quality Metrics.</span></div>
+        <div class="edu-bullet"><span class="edu-bullet-dot"></span><span>Thesis Title: Test Mocking in Practice: Developer Challenges and the Impact on Software Maintainability.</span></div>
+        <div class="edu-bullet"><span class="edu-bullet-dot"></span><span>Grade: <strong class="grade" style="font-weight:700;">84%</strong></span></div>
+      </div>
+
+      <div>
+        <span class="tag green">Software Engineering</span>
+        <span class="tag green">Topic Modelling</span>
+        <span class="tag green">Developer Discussion Mining</span>
+        <span class="tag green">Mock Testing</span>
+      </div>
+    </div>
+
+    <!-- ── CHITTAGONG — pastel purple ── -->
+    <div class="edu-card chittagong" style="animation-delay:0.13s">
+      <div class="edu-top">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5"/></svg>
+        </div>
+        <div class="edu-info">
+          <div class="edu-degree-row">
+            <span class="edu-degree">Bachelor of Science in Computer Science and Engineering</span>
+            <span class="edu-badge">Undergraduate</span>
+          </div>
+          <div class="edu-inst-row">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="edu-inst">University of Chittagong</span>
+          </div>
+          <div class="edu-meta">
+            <span class="edu-meta-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Jan. 2016 – Dec. 2019
+            </span>
+            <span class="edu-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Chittagong, Bangladesh
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-divider"></div>
+
+      <div class="edu-bullets">
+        <div class="edu-bullet"><span class="edu-bullet-dot"></span><span>Core curriculum covering Algorithms, Data Structures, Software Engineering, Database Systems, and Artificial Intelligence.</span></div>
+        <div class="edu-bullet"><span class="edu-bullet-dot"></span><span>Thesis Title: Incorporating Sentiment Aware Features in a Neural Network Model for Stance Detection on Microblog</span></div>
+        <div class="edu-bullet"><span class="edu-bullet-dot"></span><span>Grade: <strong class="grade" style="font-weight:700;">3.78 on a scale of 4.00</strong></span></div>
+      </div>
+
+      <div>
+        <span class="tag purple">Computer Programming</span>
+        <span class="tag purple">Natural Language Processing</span>
+        <span class="tag purple">Machine Learning</span>
+        <span class="tag purple">Data Engineering</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    toggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('portfolio-theme', next);
+    });
+  </script>
+
+</body>
+</html>

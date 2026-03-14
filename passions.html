@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passions — Mumtahina Ahmed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    [data-theme="dark"] {
+      --bg:#080a0f;--bg2:#0f1219;--border:rgba(255,255,255,0.08);--text:#ffffff;--text-muted:#94a3b8;
+      --nav-bg:rgba(8,10,15,0.88);--card-bg:rgba(255,255,255,0.03);
+      --dock-bg:rgba(18,22,32,0.92);--dock-border:rgba(255,255,255,0.12);
+      --dock-icon:rgba(255,255,255,0.55);--dock-icon-active:#ffffff;
+      --dock-active-bg:rgba(16,185,129,0.18);--dock-active-border:rgba(16,185,129,0.45);
+      --card-surface:#0d1220;--img-bg:#0d1117;--story-bg:#0d1220;
+      --story-border:rgba(255,255,255,0.06);--arrow-bg:rgba(0,0,0,0.52);
+      --dot-inactive:rgba(255,255,255,0.28);--counter-bg:rgba(0,0,0,0.58);
+      --green:#10b981;--green-bg:rgba(16,185,129,0.14);--green-border:rgba(16,185,129,0.30);--green-tag-bg:rgba(16,185,129,0.11);--green-tag-border:rgba(16,185,129,0.28);
+      --amber:#f59e0b;--amber-bg:rgba(245,158,11,0.14);--amber-border:rgba(245,158,11,0.30);--amber-tag-bg:rgba(245,158,11,0.11);--amber-tag-border:rgba(245,158,11,0.28);
+      --violet:#8b5cf6;--violet-bg:rgba(139,92,246,0.14);--violet-border:rgba(139,92,246,0.30);--violet-tag-bg:rgba(139,92,246,0.11);--violet-tag-border:rgba(139,92,246,0.28);
+      --cyan:#06b6d4;--cyan-bg:rgba(6,182,212,0.14);--cyan-border:rgba(6,182,212,0.30);--cyan-tag-bg:rgba(6,182,212,0.11);--cyan-tag-border:rgba(6,182,212,0.28);
+      --rose:#f43f5e;--rose-bg:rgba(244,63,94,0.14);--rose-border:rgba(244,63,94,0.30);--rose-tag-bg:rgba(244,63,94,0.11);--rose-tag-border:rgba(244,63,94,0.28);
+      --orange:#fb923c;--orange-bg:rgba(251,146,60,0.14);--orange-border:rgba(251,146,60,0.30);--orange-tag-bg:rgba(251,146,60,0.11);--orange-tag-border:rgba(251,146,60,0.28);
+      --lime:#84cc16;--lime-bg:rgba(132,204,22,0.14);--lime-border:rgba(132,204,22,0.30);--lime-tag-bg:rgba(132,204,22,0.11);--lime-tag-border:rgba(132,204,22,0.28);
+      --pink:#ec4899;--pink-bg:rgba(236,72,153,0.14);--pink-border:rgba(236,72,153,0.30);--pink-tag-bg:rgba(236,72,153,0.11);--pink-tag-border:rgba(236,72,153,0.28);
+    }
+    [data-theme="light"] {
+      --bg:#f4f6fb;--bg2:#ffffff;--border:rgba(0,0,0,0.09);--text:#0a0f1e;--text-muted:#475569;
+      --nav-bg:rgba(244,246,251,0.92);--card-bg:rgba(0,0,0,0.025);
+      --dock-bg:rgba(255,255,255,0.88);--dock-border:rgba(0,0,0,0.12);
+      --dock-icon:rgba(30,41,59,0.5);--dock-icon-active:#0a0f1e;
+      --dock-active-bg:rgba(4,120,87,0.10);--dock-active-border:rgba(4,120,87,0.40);
+      --card-surface:#ffffff;--img-bg:#dde4f0;--story-bg:#ffffff;
+      --story-border:rgba(0,0,0,0.07);--arrow-bg:rgba(255,255,255,0.82);
+      --dot-inactive:rgba(0,0,0,0.22);--counter-bg:rgba(0,0,0,0.44);
+      --green:#047857;--green-bg:rgba(4,120,87,0.12);--green-border:rgba(4,120,87,0.35);--green-tag-bg:rgba(4,120,87,0.10);--green-tag-border:rgba(4,120,87,0.38);
+      --amber:#b45309;--amber-bg:rgba(180,83,9,0.10);--amber-border:rgba(180,83,9,0.35);--amber-tag-bg:rgba(180,83,9,0.09);--amber-tag-border:rgba(180,83,9,0.36);
+      --violet:#6d28d9;--violet-bg:rgba(109,40,217,0.10);--violet-border:rgba(109,40,217,0.35);--violet-tag-bg:rgba(109,40,217,0.08);--violet-tag-border:rgba(109,40,217,0.34);
+      --cyan:#0e7490;--cyan-bg:rgba(14,116,144,0.10);--cyan-border:rgba(14,116,144,0.35);--cyan-tag-bg:rgba(14,116,144,0.09);--cyan-tag-border:rgba(14,116,144,0.36);
+      --rose:#be123c;--rose-bg:rgba(190,18,60,0.10);--rose-border:rgba(190,18,60,0.33);--rose-tag-bg:rgba(190,18,60,0.08);--rose-tag-border:rgba(190,18,60,0.33);
+      --orange:#c2410c;--orange-bg:rgba(194,65,12,0.10);--orange-border:rgba(194,65,12,0.33);--orange-tag-bg:rgba(194,65,12,0.08);--orange-tag-border:rgba(194,65,12,0.33);
+      --lime:#4d7c0f;--lime-bg:rgba(77,124,15,0.10);--lime-border:rgba(77,124,15,0.35);--lime-tag-bg:rgba(77,124,15,0.09);--lime-tag-border:rgba(77,124,15,0.35);
+      --pink:#9d174d;--pink-bg:rgba(157,23,77,0.10);--pink-border:rgba(157,23,77,0.33);--pink-tag-bg:rgba(157,23,77,0.08);--pink-tag-border:rgba(157,23,77,0.33);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;transition:background .35s,color .35s}
+    body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:.45;pointer-events:none}
+    body::after{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 55% 45% at 75% 15%,rgba(16,185,129,.09) 0%,transparent 65%),radial-gradient(ellipse 35% 30% at 15% 85%,rgba(16,185,129,.05) 0%,transparent 60%);pointer-events:none}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 44px;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s}
+    .nav-brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+    .nav-logo{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .nav-label-top{font-family:'Playfair Display',serif;font-weight:700;font-size:15px;color:var(--text)}
+    .nav-label-bot{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-muted);letter-spacing:.04em}
+    .toggle-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--card-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .25s;position:relative;overflow:hidden}
+    .toggle-btn:hover{border-color:#10b981;box-shadow:0 0 16px rgba(16,185,129,.25)}
+    .toggle-btn .icon-sun,.toggle-btn .icon-moon{position:absolute;transition:transform .35s,opacity .35s}
+    [data-theme="dark"] .icon-sun{opacity:1;transform:scale(1)}
+    [data-theme="dark"] .icon-moon{opacity:0;transform:scale(.4) rotate(-90deg)}
+    [data-theme="light"] .icon-sun{opacity:0;transform:scale(.4) rotate(90deg)}
+    [data-theme="light"] .icon-moon{opacity:1;transform:scale(1)}
+
+    /* DOCK */
+    .dock-wrap{position:fixed;top:82px;left:50%;transform:translateX(-50%);z-index:90;animation:fadeDown .5s .2s ease both}
+    .dock{display:flex;align-items:center;gap:4px;background:var(--dock-bg);border:1px solid var(--dock-border);border-radius:999px;padding:8px 14px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 8px 40px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.2);transition:background .35s,border-color .35s}
+    .dock-item{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid transparent;background:transparent;cursor:pointer;transition:all .22s;text-decoration:none;position:relative;color:var(--dock-icon)}
+    .dock-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .dock-item:hover{color:var(--dock-icon-active);background:rgba(255,255,255,.07);transform:translateY(-2px)}
+    .dock-item.active{color:#34d399;background:var(--dock-active-bg);border-color:var(--dock-active-border)}
+    [data-theme="light"] .dock-item.active{color:#047857}
+    .dock-item .dock-tip{position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:11px;font-weight:500;white-space:nowrap;padding:4px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .18s;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+    .dock-item:hover .dock-tip{opacity:1}
+    .dock-divider{width:1px;height:24px;background:var(--border);margin:0 4px}
+
+    /* PAGE */
+    .page{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:90px 44px 80px}
+    .page-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);border-radius:999px;padding:5px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#10b981;letter-spacing:.05em;margin-bottom:18px}
+    [data-theme="light"] .page-tag{background:rgba(4,120,87,.10);border-color:rgba(4,120,87,.40);color:#047857}
+
+    /* BIGGER BRIGHT WHITE TITLE */
+    .page-title{
+      font-family:'Playfair Display',serif;
+      font-weight:900;
+      font-size:clamp(44px,6.5vw,68px);
+      line-height:1.06;
+      letter-spacing:-.03em;
+      margin-bottom:14px;
+      color:#ffffff;
+    }
+    [data-theme="light"] .page-title{color:#0a0f1e}
+
+    /* BIGGER BRIGHT WHITE SUBTITLE */
+    .page-sub{
+      font-size:18.5px;
+      color:#ffffff;
+      line-height:1.7;
+      margin-bottom:42px;
+      font-weight:400;
+    }
+    [data-theme="light"] .page-sub{color:#1e293b}
+
+    /* PILLS — all text orange, each keeps its own bg/border tint */
+    .passions-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px;animation:fadeUp .45s ease both}
+    .passion-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;border:1px solid;font-size:14px;font-weight:600;cursor:default;transition:transform .2s,box-shadow .2s}
+    .passion-pill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.18)}
+    .passion-pill .e{font-size:16px}
+    .passion-pill.green,
+    .passion-pill.amber,
+    .passion-pill.violet,
+    .passion-pill.cyan,
+    .passion-pill.rose,
+    .passion-pill.orange,
+    .passion-pill.lime,
+    .passion-pill.pink  {background:var(--orange-tag-bg);border-color:var(--orange-border);color:var(--orange)}
+
+    /* PASSION BLOCK */
+    .passion-block{margin-bottom:68px;animation:fadeUp .45s ease both}
+    .passion-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+    .passion-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+    .passion-icon.green {background:var(--green-bg); border:1px solid var(--green-border)}
+    .passion-icon.amber {background:var(--amber-bg); border:1px solid var(--amber-border)}
+    .passion-icon.violet{background:var(--violet-bg);border:1px solid var(--violet-border)}
+    .passion-icon.cyan  {background:var(--cyan-bg);  border:1px solid var(--cyan-border)}
+    .passion-icon.rose  {background:var(--rose-bg);  border:1px solid var(--rose-border)}
+    .passion-icon.orange{background:var(--orange-bg);border:1px solid var(--orange-border)}
+    .passion-icon.lime  {background:var(--lime-bg);  border:1px solid var(--lime-border)}
+    .passion-icon.pink  {background:var(--pink-bg);  border:1px solid var(--pink-border)}
+    .passion-title-text{font-family:'Playfair Display',serif;font-size:24px;font-weight:700}
+    .passion-header-line{flex:1;height:1px;background:var(--border)}
+
+    /* CARD */
+    .passion-card{background:var(--card-surface);border:1px solid var(--border);border-radius:22px;overflow:hidden;transition:box-shadow .28s,border-color .28s}
+    .passion-card:hover{box-shadow:0 20px 56px rgba(0,0,0,.32)}
+    .passion-card.green:hover {border-color:var(--green-border)}
+    .passion-card.amber:hover {border-color:var(--amber-border)}
+    .passion-card.violet:hover{border-color:var(--violet-border)}
+    .passion-card.cyan:hover  {border-color:var(--cyan-border)}
+    .passion-card.rose:hover  {border-color:var(--rose-border)}
+    .passion-card.orange:hover{border-color:var(--orange-border)}
+    .passion-card.lime:hover  {border-color:var(--lime-border)}
+    .passion-card.pink:hover  {border-color:var(--pink-border)}
+
+    /* IMAGE STAGE */
+    .img-stage{position:relative;width:100%;height:520px;background:var(--img-bg);overflow:hidden}
+    .img-stage::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:4;pointer-events:none}
+    .green  .img-stage::before{background:linear-gradient(90deg,#10b981,#34d399,#10b981)}
+    .amber  .img-stage::before{background:linear-gradient(90deg,#f59e0b,#fcd34d,#f59e0b)}
+    .violet .img-stage::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa,#8b5cf6)}
+    .cyan   .img-stage::before{background:linear-gradient(90deg,#06b6d4,#67e8f9,#06b6d4)}
+    .rose   .img-stage::before{background:linear-gradient(90deg,#f43f5e,#fb7185,#f43f5e)}
+    .orange .img-stage::before{background:linear-gradient(90deg,#fb923c,#fdba74,#fb923c)}
+    .lime   .img-stage::before{background:linear-gradient(90deg,#84cc16,#bef264,#84cc16)}
+    .pink   .img-stage::before{background:linear-gradient(90deg,#ec4899,#f9a8d4,#ec4899)}
+    .img-stage::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;z-index:2;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.20))}
+    .img-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease}
+    .img-stage img.visible{opacity:1;z-index:1}
+    .img-stage img.hidden{opacity:0;z-index:0;pointer-events:none}
+    .img-counter{position:absolute;top:16px;right:16px;z-index:5;background:var(--counter-bg);backdrop-filter:blur(10px);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.06em;padding:5px 14px;border-radius:999px}
+    .arr{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;background:var(--arrow-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,background .2s;color:#fff}
+    [data-theme="light"] .arr{color:#0a0f1e;border-color:rgba(0,0,0,.14)}
+    .arr:hover{transform:translateY(-50%) scale(1.10)}
+    .arr svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .arr.prev{left:16px}
+    .arr.next{right:16px}
+    .green  .arr:hover{background:rgba(16,185,129,.82)}
+    .amber  .arr:hover{background:rgba(245,158,11,.82)}
+    .violet .arr:hover{background:rgba(139,92,246,.82)}
+    .cyan   .arr:hover{background:rgba(6,182,212,.82)}
+    .rose   .arr:hover{background:rgba(244,63,94,.82)}
+    .orange .arr:hover{background:rgba(251,146,60,.82)}
+    .lime   .arr:hover{background:rgba(132,204,22,.82)}
+    .pink   .arr:hover{background:rgba(236,72,153,.82)}
+    .img-dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:5}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-inactive);cursor:pointer;transition:background .22s,transform .22s}
+    .dot.active{background:#ffffff;transform:scale(1.35)}
+
+    /* STORY PANEL */
+    .story-panel{background:var(--story-bg);border-top:1px solid var(--story-border);padding:30px 36px 32px}
+    .story-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px;transition:opacity .3s}
+    .green  .story-meta{color:var(--green)}
+    .amber  .story-meta{color:var(--amber)}
+    .violet .story-meta{color:var(--violet)}
+    .cyan   .story-meta{color:var(--cyan)}
+    .rose   .story-meta{color:var(--rose)}
+    .orange .story-meta{color:var(--orange)}
+    .lime   .story-meta{color:var(--lime)}
+    .pink   .story-meta{color:var(--pink)}
+    .story-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px;transition:opacity .3s}
+    .story-body{font-size:16px;color:var(--text-muted);line-height:1.82;font-weight:300;max-width:820px;transition:opacity .3s}
+    .story-meta.fade,.story-title.fade,.story-body.fade{opacity:0}
+
+    @keyframes fadeUp  {from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+    @keyframes fadeDown{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+    @media(max-width:768px){
+      .page{padding:90px 18px 60px}
+      nav{padding:14px 18px}
+      .dock{gap:2px;padding:7px 10px}
+      .dock-item{width:40px;height:40px}
+      .img-stage{height:280px}
+      .story-panel{padding:22px 20px 24px}
+      .passion-pill{font-size:13px;padding:7px 14px}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo"><img src="portfolio.png" style="width:36px;height:36px;object-fit:contain;" alt="logo"></div>
+      <div><div class="nav-label-top">Portfolio</div><div class="nav-label-bot">Mumtahina Ahmed</div></div>
+    </a>
+    <button class="toggle-btn" id="themeToggle"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+  </nav>
+
+  <div class="dock-wrap">
+    <div class="dock">
+      <a class="dock-item" href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+        <span class="dock-tip">Home</span>
+      </a>
+      <a class="dock-item" href="education.html">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5"/></svg>
+        <span class="dock-tip">Education</span>
+      </a>
+      <a class="dock-item" href="experience.html">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>
+        <span class="dock-tip">Experience</span>
+      </a>
+      <a class="dock-item" href="skills.html">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span class="dock-tip">Technical Skills</span>
+      </a>
+      <a class="dock-item" href="projects.html">
+        <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        <span class="dock-tip">Projects</span>
+      </a>
+      <a class="dock-item" href="achievements.html">
+        <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span class="dock-tip">Achievements</span>
+      </a>
+      <div class="dock-divider"></div>
+      <a class="dock-item" href="certifications.html">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span class="dock-tip">Certifications</span>
+      </a>
+      <a class="dock-item" href="blog.html">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span class="dock-tip">Tech Blog</span>
+      </a>
+      <a class="dock-item active" href="passions.html">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="dock-tip">Passions</span>
+      </a>
+      <a class="dock-item" href="contact.html">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="dock-tip">Contact</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="page-tag">LIFE BEYOND THE SCREEN</div>
+    <h1 class="page-title">Passions</h1>
+    <p class="page-sub">The things that fill my world outside of research and code — stories, music, food, nature, and everything in between.</p>
+
+    <!-- PILLS -->
+    <div class="passions-row">
+      <span class="passion-pill green"> <span class="e">📚</span> Reading &amp; Article Writing</span>
+      <span class="passion-pill amber"> <span class="e">🎓</span> Teaching &amp; Mentorship</span>
+      <span class="passion-pill violet"><span class="e">🎵</span> Music &amp; Movies</span>
+      <span class="passion-pill cyan">  <span class="e">🍳</span> Cooking &amp; Hosting</span>
+      <span class="passion-pill rose">  <span class="e">📷</span> Photography</span>
+      <span class="passion-pill orange"><span class="e">🌍</span> Cultural Curiosity &amp; Festivals</span>
+      <span class="passion-pill lime">  <span class="e">🌿</span> Gardening</span>
+      <span class="passion-pill pink">  <span class="e">🎨</span> Art, Paintings &amp; Crafts</span>
+    </div>
+
+    <!-- Teaching & Mentorship -->
+    <div class="passion-block" style="animation-delay:.06s">
+      <div class="passion-header">
+        <div class="passion-icon amber">🎓</div>
+        <div class="passion-title-text">Teaching &amp; Mentorship</div>
+        <div class="passion-header-line"></div>
+      </div>
+      <div class="passion-card amber">
+        <div class="img-stage">
+          <img src="Mentor/photo1.JPG" class="visible"
+               data-title="Presentation in GSA Commons at USask"
+               data-body="Presented one of my Projects at Research Fest 2025."
+               alt="Presentation in GSA Commons at USask — photo 1">
+          <span class="img-counter">1 / 2</span>
+          <button class="arr prev" onclick="prev(this)" aria-label="Prev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="arr next" onclick="next(this)" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="img-dots">
+            <span class="dot active" onclick="goTo(this,0)"></span>
+            <span class="dot"        onclick="goTo(this,1)"></span>
+          </div>
+        </div>
+        <div class="story-panel">
+          <div class="story-title">Presentation in GSA Commons at USask</div>
+          <div class="story-body">Presented one of my Projects at Research Fest 2025.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cultural Curiosity & Festivals — icon changed to 🌍 -->
+    <div class="passion-block" style="animation-delay:.13s">
+      <div class="passion-header">
+        <div class="passion-icon orange">🌍</div>
+        <div class="passion-title-text">Cultural Curiosity &amp; Festivals</div>
+        <div class="passion-header-line"></div>
+      </div>
+      <div class="passion-card orange">
+        <div class="img-stage">
+          <img src="Festivals/photo1.jpg" class="visible"
+               data-title="Christmas Celebration"
+               data-body="Celebrated Christmas Day 2023 at Louis' Loft USask Campus."
+               alt="Festivals photo 1">
+          <img src="Festivals/photo2.jpg" class="hidden"
+               data-title="Christmas Celebration"
+               data-body="A snap with two of my Friends."
+               alt="Festivals photo 2">
+          <img src="Festivals/photo3.jpg" class="hidden"
+               data-title="Cricket Tournament"
+               data-body="We were runner-up at the tournament."
+               alt="Festivals photo 3">
+          <span class="img-counter">1 / 3</span>
+          <button class="arr prev" onclick="prev(this)" aria-label="Prev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="arr next" onclick="next(this)" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="img-dots">
+            <span class="dot active" onclick="goTo(this,0)"></span>
+            <span class="dot"        onclick="goTo(this,1)"></span>
+            <span class="dot"        onclick="goTo(this,2)"></span>
+          </div>
+        </div>
+        <div class="story-panel">
+          <div class="story-title">Christmas Celebration</div>
+          <div class="story-body">Celebrated Christmas Day 2023 at Louis' Loft USask Campus.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photography -->
+    <div class="passion-block" style="animation-delay:.20s">
+      <div class="passion-header">
+        <div class="passion-icon rose">📷</div>
+        <div class="passion-title-text">Photography</div>
+        <div class="passion-header-line"></div>
+      </div>
+      <div class="passion-card rose">
+        <div class="img-stage">
+          <img src="Photography/photo1.jpg"  class="visible" data-title="Campus Stories" data-body="Thorvaldson becomes more mysterious at Night!!..." alt="Photography photo 1">
+          <img src="Photography/photo2.jpg"  class="hidden"  data-title="Campus Stories" data-body="Mesmerized with the color of Fall." alt="Photography photo 2">
+          <img src="Photography/photo3.jpg"  class="hidden"  data-title="Campus Stories" data-body="Pure white baby flowers just wow!!." alt="Photography photo 3">
+          <img src="Photography/photo4.jpg"  class="hidden"  data-title="Campus Stories" data-body="Just from someone's front yard." alt="Photography photo 4">
+          <img src="Photography/photo5.jpg"  class="hidden"  data-title="Campus Stories" data-body="A beautiful evening at River Landing." alt="Photography photo 5">
+          <img src="Photography/photo6.jpg"  class="hidden"  data-title="Campus Stories" data-body="Coming back to home in the evening." alt="Photography photo 6">
+          <img src="Photography/photo7.jpg"  class="hidden"  data-title="Campus Stories" data-body="How colorful it is at night!!..." alt="Photography photo 7">
+          <img src="Photography/photo8.jpg"  class="hidden"  data-title="Campus Stories" data-body="The dark side of beauty." alt="Photography photo 8">
+          <img src="Photography/photo9.jpg"  class="hidden"  data-title="Campus Stories" data-body="Evening is beautiful but sometimes sad!.." alt="Photography photo 9">
+          <img src="Photography/photo10.jpg" class="hidden"  data-title="Campus Stories" data-body="Captured a sunset from Residence area." alt="Photography photo 10">
+          <img src="Photography/photo11.jpg" class="hidden"  data-title="Campus Stories" data-body="What could be more beautiful than blue flowers." alt="Photography photo 11">
+          <img src="Photography/photo12.jpg" class="hidden"  data-title="Campus Stories" data-body="Another sunset from the Saskatchewan River." alt="Photography photo 12">
+          <img src="Photography/photo13.jpg" class="hidden"  data-title="Campus Stories" data-body="The color of tragedy is grey..." alt="Photography photo 13">
+          <img src="Photography/photo14.jpg" class="hidden"  data-title="Campus Stories" data-body="Witnessed the most beautiful Aurora!!..." alt="Photography photo 14">
+          <img src="Photography/photo15.jpg" class="hidden"  data-title="Campus Stories" data-body="A place to have coffee and chitchat.." alt="Photography photo 15">
+          <img src="Photography/photo16.jpg" class="hidden"  data-title="Campus Stories" data-body="Just having a walk in the residence area..." alt="Photography photo 16">
+          <img src="Photography/photo17.jpg" class="hidden"  data-title="Campus Stories" data-body="It's me!!!..." alt="Photography photo 17">
+          <span class="img-counter">1 / 18</span>
+          <button class="arr prev" onclick="prev(this)" aria-label="Prev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="arr next" onclick="next(this)" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="img-dots">
+            <span class="dot active" onclick="goTo(this,0)"></span>
+            <span class="dot" onclick="goTo(this,1)"></span>
+            <span class="dot" onclick="goTo(this,2)"></span>
+            <span class="dot" onclick="goTo(this,3)"></span>
+            <span class="dot" onclick="goTo(this,4)"></span>
+            <span class="dot" onclick="goTo(this,5)"></span>
+            <span class="dot" onclick="goTo(this,6)"></span>
+            <span class="dot" onclick="goTo(this,7)"></span>
+            <span class="dot" onclick="goTo(this,8)"></span>
+            <span class="dot" onclick="goTo(this,9)"></span>
+            <span class="dot" onclick="goTo(this,10)"></span>
+            <span class="dot" onclick="goTo(this,11)"></span>
+            <span class="dot" onclick="goTo(this,12)"></span>
+            <span class="dot" onclick="goTo(this,13)"></span>
+            <span class="dot" onclick="goTo(this,14)"></span>
+            <span class="dot" onclick="goTo(this,15)"></span>
+            <span class="dot" onclick="goTo(this,16)"></span>
+          </div>
+        </div>
+        <div class="story-panel">
+          <div class="story-title">Campus Stories</div>
+          <div class="story-body">Thorvaldson becomes more mysterious at Night!!...</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function(){
+      var toggle=document.getElementById('themeToggle');
+      var root=document.documentElement;
+      var saved=localStorage.getItem('portfolio-theme');
+      if(saved)root.setAttribute('data-theme',saved);
+      toggle.addEventListener('click',function(){
+        var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+        root.setAttribute('data-theme',next);
+        localStorage.setItem('portfolio-theme',next);
+      });
+    })();
+
+    function getCard(el){return el.closest('.passion-card')}
+    function getImgs(card){return Array.from(card.querySelector('.img-stage').querySelectorAll('img'))}
+    function curIdx(card){
+      var imgs=getImgs(card);
+      var i=imgs.findIndex(function(img){return img.classList.contains('visible')});
+      return i<0?0:i;
+    }
+    function slideTo(card,idx){
+      var imgs=getImgs(card);
+      var total=imgs.length;
+      if(!total)return;
+      idx=((idx%total)+total)%total;
+      imgs.forEach(function(img,i){
+        img.classList.toggle('visible',i===idx);
+        img.classList.toggle('hidden',i!==idx);
+      });
+      var ctr=card.querySelector('.img-counter');
+      if(ctr)ctr.textContent=(idx+1)+' / '+total;
+      card.querySelectorAll('.img-dots .dot').forEach(function(d,i){d.classList.toggle('active',i===idx)});
+      var active=imgs[idx];
+      var t=active.dataset.title||'';
+      var b=active.dataset.body||'';
+      var metaEl=card.querySelector('.story-meta');
+      var titleEl=card.querySelector('.story-title');
+      var bodyEl=card.querySelector('.story-body');
+      [metaEl,titleEl,bodyEl].forEach(function(el){if(el)el.classList.add('fade')});
+      setTimeout(function(){
+        if(titleEl&&t)titleEl.textContent=t;
+        if(bodyEl&&b)bodyEl.textContent=b;
+        if(metaEl)metaEl.textContent=metaEl.textContent.replace(/PHOTO \d+ OF \d+/,'PHOTO '+(idx+1)+' OF '+total);
+        [metaEl,titleEl,bodyEl].forEach(function(el){if(el)el.classList.remove('fade')});
+      },280);
+    }
+    function prev(btn){var c=getCard(btn);slideTo(c,curIdx(c)-1)}
+    function next(btn){var c=getCard(btn);slideTo(c,curIdx(c)+1)}
+    function goTo(dot,idx){slideTo(dot.closest('.passion-card'),idx)}
+
+    document.querySelectorAll('.passion-card').forEach(function(card){
+      var imgs=getImgs(card);
+      if(imgs.length<=1){
+        card.querySelectorAll('.arr,.img-dots,.img-counter').forEach(function(el){el.style.display='none'});
+      }
+    });
+  </script>
+</body>
+</html>

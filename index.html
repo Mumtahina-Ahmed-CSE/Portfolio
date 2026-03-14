@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mumtahina Ahmed — AI &amp; ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+[data-theme="dark"] {
+  --bg: #020403; --bg2: #060d08; --bg3: #0c1a0f;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(16,185,129,0.5);
+  --text: #ffffff; --text-sub: #e2e8f0; --text-muted: #8fa89a;
+  --green: #10b981; --green-bright: #34d399; --green-glow: rgba(16,185,129,0.22);
+  --card-bg: rgba(255,255,255,0.03); --nav-bg: rgba(2,4,3,0.92);
+  --shadow: 0 24px 60px rgba(0,0,0,0.75);
+  --stat-bg: #040a06; --stat-border: rgba(255,255,255,0.07);
+  --icon-bg: #0a1a0d; --icon-border: rgba(16,185,129,0.22);
+  --role-color: #ffffff;
+  --dock-bg: rgba(4,10,6,0.95); --dock-border: rgba(16,185,129,0.18);
+  --dock-icon: rgba(255,255,255,0.50); --dock-icon-active: #ffffff;
+  --dock-active-bg: rgba(16,185,129,0.18); --dock-active-border: rgba(16,185,129,0.50);
+  --status-pill-bg: rgba(16,185,129,0.22); --status-pill-border: rgba(16,185,129,0.30);
+  --status-pill-text: #34d399;
+  --pulse-color: #22d3ee;
+  --bio-heading: #34d399;
+  --stat-icon-bg: rgba(16,185,129,0.12);
+  --stat-icon-stroke: #34d399;
+  --avatar-border: rgba(16,185,129,0.35);
+}
+
+[data-theme="light"] {
+  --bg: #f4f6fb; --bg2: #ffffff; --bg3: #eef1f8;
+  --border: rgba(0,0,0,0.09); --border-hover: rgba(4,120,87,0.4);
+  --text: #0a0f0c; --text-sub: #1e293b; --text-muted: #475569;
+  --green: #047857; --green-bright: #065f46; --green-glow: rgba(4,120,87,0.12);
+  --card-bg: rgba(0,0,0,0.025); --nav-bg: rgba(244,246,251,0.92);
+  --shadow: 0 24px 60px rgba(0,0,0,0.10);
+  --stat-bg: #f8fffe; --stat-border: rgba(0,0,0,0.08);
+  --icon-bg: #d1fae5; --icon-border: rgba(4,120,87,0.28);
+  --role-color: #0a0f0c;
+  --dock-bg: rgba(255,255,255,0.90); --dock-border: rgba(0,0,0,0.12);
+  --dock-icon: rgba(30,41,59,0.5); --dock-icon-active: #0a0f0c;
+  --dock-active-bg: rgba(4,120,87,0.12); --dock-active-border: rgba(4,120,87,0.40);
+  --status-pill-bg: rgba(4,120,87,0.10); --status-pill-border: rgba(4,120,87,0.35);
+  --status-pill-text: #047857;
+  --pulse-color: #0891b2;
+  --bio-heading: #047857;
+  --stat-icon-bg: rgba(4,120,87,0.12);
+  --stat-icon-stroke: #047857;
+  --avatar-border: rgba(4,120,87,0.40);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Outfit', sans-serif; min-height: 100vh;
+  overflow-x: hidden; transition: background 0.35s, color 0.35s;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: 0.4; pointer-events: none;
+}
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 75% 15%, rgba(16,185,129,0.13) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 30% at 15% 85%, rgba(16,185,129,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 44px; background: var(--nav-bg);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border); transition: background 0.35s, border-color 0.35s;
+}
+.nav-brand { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+.nav-logo { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nav-label-top { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; color: var(--text); }
+.nav-label-bot { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.04em; }
+
+/* ── THEME TOGGLE ── */
+.toggle-btn {
+  width: 44px; height: 44px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--card-bg);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; transition: all 0.25s; position: relative; overflow: hidden;
+}
+.toggle-btn:hover { border-color: var(--green); box-shadow: 0 0 16px var(--green-glow); }
+.toggle-btn .icon-sun, .toggle-btn .icon-moon { position: absolute; transition: transform 0.35s, opacity 0.35s; }
+[data-theme="dark"]  .icon-sun  { opacity: 1; transform: scale(1); }
+[data-theme="dark"]  .icon-moon { opacity: 0; transform: scale(0.4) rotate(-90deg); }
+[data-theme="light"] .icon-sun  { opacity: 0; transform: scale(0.4) rotate(90deg); }
+[data-theme="light"] .icon-moon { opacity: 1; transform: scale(1); }
+
+/* ── FLOATING DOCK ── */
+.dock-wrap {
+  position: fixed; top: 82px; left: 50%; transform: translateX(-50%);
+  z-index: 90; animation: fadeDown 0.5s 0.2s ease both;
+}
+.dock {
+  display: flex; align-items: center; gap: 3px;
+  background: var(--dock-bg); border: 1px solid var(--dock-border);
+  border-radius: 999px; padding: 7px 12px;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.35s, border-color 0.35s;
+}
+.dock-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid transparent; background: transparent;
+  cursor: pointer; transition: all 0.22s;
+  text-decoration: none; position: relative; color: var(--dock-icon);
+}
+.dock-item svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.dock-item:hover { color: var(--dock-icon-active); background: rgba(16,185,129,0.08); transform: translateY(-2px); }
+.dock-item.active { color: var(--green); background: var(--dock-active-bg); border-color: var(--dock-active-border); }
+.dock-item .dock-tip {
+  position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%);
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text); font-size: 11px; font-weight: 500;
+  white-space: nowrap; padding: 4px 10px; border-radius: 8px;
+  opacity: 0; pointer-events: none; transition: opacity 0.18s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.dock-item:hover .dock-tip { opacity: 1; }
+.dock-divider { width: 1px; height: 22px; background: var(--border); margin: 0 3px; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 300px 1fr;
+  gap: 28px; padding: 80px 44px 36px;
+  max-width: 1280px; margin: 0 auto;
+}
+
+/* ── PROFILE CARD ── */
+.profile-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 22px; padding: 28px 22px;
+  display: flex; flex-direction: column; gap: 22px;
+  box-shadow: var(--shadow); animation: fadeUp 0.55s ease both;
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s; align-self: start;
+}
+.profile-top { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.avatar-ring { width: 160px; height: 160px; border-radius: 14px; overflow: hidden; border: 2px solid var(--avatar-border); flex-shrink: 0; }
+.avatar-ring img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.avatar-fallback { width: 100%; height: 100%; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 48px; color: var(--green); }
+.p-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 20px; color: var(--text); letter-spacing: -0.01em; }
+/* Role text — pure white in dark, pure black in light */
+.p-role { font-size: 12px; color: var(--role-color); font-family: 'JetBrains Mono', monospace; line-height: 1.65; font-weight: 500; }
+.divider { height: 1px; background: var(--border); }
+.contact-list { display: flex; flex-direction: column; gap: 11px; }
+.c-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text); text-decoration: none; transition: color 0.2s; }
+.c-item:hover { color: var(--green); }
+.c-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--icon-bg); border: 1px solid var(--icon-border);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.25s;
+}
+.c-icon svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.c-item:hover .c-icon { border-color: var(--green); background: rgba(4,120,87,0.15); box-shadow: 0 0 14px var(--green-glow); }
+
+/* ── RIGHT PANEL ── */
+.hero-right { display: flex; flex-direction: column; gap: 26px; padding: 4px 0 32px; animation: fadeUp 0.55s 0.13s ease both; }
+.status-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--status-pill-bg); border: 1px solid var(--status-pill-border);
+  border-radius: 999px; padding: 5px 15px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--status-pill-text); width: fit-content; letter-spacing: 0.03em;
+}
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--pulse-color); animation: blink 2s ease-in-out infinite; }
+.headline { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(36px, 4vw, 56px); line-height: 1.07; letter-spacing: -0.03em; color: var(--text); }
+
+/* ── BIO ── */
+.bio-wrapper {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 18px; padding: 24px 28px;
+  transition: background 0.35s, border-color 0.35s;
+}
+.bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; }
+.bio-section h3 {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--bio-heading); margin-bottom: 10px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  font-weight: 800; /* BOLD */
+}
+.bio-section p { font-size: 15px; color: var(--text); line-height: 1.85; font-weight: 400; }
+.bio-section.full { grid-column: 1 / -1; }
+
+/* ── STATS ── */
+.stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+.stat {
+  background: var(--stat-bg); border: 1px solid var(--stat-border);
+  border-radius: 18px; padding: 22px 20px 20px;
+  display: flex; flex-direction: column; gap: 0;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; cursor: default;
+}
+.stat:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 12px 40px var(--green-glow); }
+.stat-icon-wrap {
+  width: 38px; height: 38px; background: var(--stat-icon-bg);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+}
+.stat-icon-wrap svg { width: 20px; height: 20px; stroke: var(--stat-icon-stroke); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.stat-val { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 34px; color: var(--text); line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px; }
+.stat-lbl { font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text-muted); font-weight: 400; }
+
+/* ── CTA ── */
+.cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--icon-bg); border: 1px solid var(--icon-border);
+  border-radius: 13px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.25s; text-decoration: none;
+}
+.btn-icon svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-icon:hover { border-color: var(--green); background: rgba(4,120,87,0.15); box-shadow: 0 0 18px var(--green-glow); transform: translateY(-2px); }
+.btn-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 13px 26px; border-radius: 14px;
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.25s; text-decoration: none; border: none; color: #fff;
+}
+.btn-pill svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.btn-resume {
+  background: linear-gradient(135deg, #047857 0%, #059669 50%, #10b981 100%);
+  box-shadow: 0 4px 20px rgba(4,120,87,0.40);
+}
+.btn-resume:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(4,120,87,0.55); filter: brightness(1.05); }
+
+@keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateX(-50%) translateY(-10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+@keyframes blink    { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding: 80px 20px 20px; }
+  .stats { grid-template-columns: repeat(2,1fr); }
+  .bio-grid { grid-template-columns: 1fr; }
+  nav { padding: 14px 20px; }
+  .dock { gap: 1px; padding: 6px 8px; }
+  .dock-item { width: 36px; height: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo"><img src="portfolio.png" style="width:36px;height:36px;object-fit:contain;" alt="Portfolio icon"></div>
+    <div>
+      <div class="nav-label-top">Portfolio</div>
+      <div class="nav-label-bot">Mumtahina Ahmed</div>
+    </div>
+  </a>
+  <button class="toggle-btn" id="themeToggle" title="Toggle light / dark mode">
+    <span class="icon-sun">☀️</span>
+    <span class="icon-moon">🌙</span>
+  </button>
+</nav>
+
+<!-- FLOATING DOCK -->
+<div class="dock-wrap">
+  <div class="dock">
+    <a class="dock-item active" href="index.html">
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+      <span class="dock-tip">Home</span>
+    </a>
+    <a class="dock-item" href="education.html">
+      <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5"/></svg>
+      <span class="dock-tip">Education</span>
+    </a>
+    <a class="dock-item" href="experience.html">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>
+      <span class="dock-tip">Experience</span>
+    </a>
+    <a class="dock-item" href="skills.html">
+      <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <span class="dock-tip">Technical Skills</span>
+    </a>
+    <a class="dock-item" href="projects.html">
+      <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+      <span class="dock-tip">Projects</span>
+    </a>
+    <a class="dock-item" href="achievements.html">
+      <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+      <span class="dock-tip">Achievements</span>
+    </a>
+    <div class="dock-divider"></div>
+    <a class="dock-item" href="certifications.html">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <span class="dock-tip">Certifications</span>
+    </a>
+    <a class="dock-item" href="blog.html">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="dock-tip">Tech Blog</span>
+    </a>
+    <a class="dock-item" href="passions.html">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="dock-tip">Passions</span>
+    </a>
+    <a class="dock-item" href="contact.html">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="dock-tip">Contact</span>
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<main class="hero">
+  <aside class="profile-card">
+    <div class="profile-top">
+      <div class="avatar-ring">
+        <img src="Profile.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Mumtahina Ahmed">
+        <div class="avatar-fallback" style="display:none;">MA</div>
+      </div>
+      <div>
+        <div class="p-name">Mumtahina Ahmed</div>
+        <div class="p-role">Software Engineer<br>AI &amp; ML · Data Engineer</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="contact-list">
+      <a class="c-item" href="tel:+13063703497">
+        <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.1 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        +1 306 370 3497
+      </a>
+      <a class="c-item" href="mailto:mumtahina.ahmed.cs@gmail.com">
+        <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        mumtahina.ahmed.cs@gmail.com
+      </a>
+      <div class="c-item">
+        <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        Saskatoon, SK, Canada
+      </div>
+    </div>
+  </aside>
+
+  <div class="hero-right">
+    <div class="status-pill"><span class="pulse"></span>Available for Opportunities</div>
+    <h1 class="headline">Building Intelligent Systems</h1>
+
+    <div class="bio-wrapper">
+      <div class="bio-grid">
+        <div class="bio-section full">
+          <h3>About Me</h3>
+          <p>I am Mumtahina, having a Computer Science Master's degree from the University of Saskatchewan (Software Research Lab). I am passionate about advancing the field of Software Engineering and developing scalable LLM-based agentic AI systems for real-world applications.</p>
+        </div>
+        <div class="bio-section">
+          <h3>Experience &amp; Expertise</h3>
+          <p>5+ years of hands-on experience across Artificial Intelligence, Machine Learning, Natural Language Processing, Software Development, and Testing. Expertise in building end-to-end deep learning pipelines using Keras and Transformers to deploy production-ready models.</p>
+        </div>
+        <div class="bio-section">
+          <h3>Research &amp; Projects</h3>
+          <p>Conducted empirical evaluations on large textual datasets. Published research in stance detection, fake news detection, and developer discussion mining using neural architectures and topic modelling.</p>
+        </div>
+        <div class="bio-section">
+          <h3>Technical Skills</h3>
+          <p>Strong foundation in Python, Java, and SQL. Proficient in version control, AI-assisted development, and writing maintainable, testable code. Experienced in Data Engineering, Data Processing, and Large-Scale Data Analysis.</p>
+        </div>
+        <div class="bio-section">
+          <h3>Work Style &amp; Goals</h3>
+          <p>Thrive in collaborative teams with structured workflows, continuously learning new technologies. Actively seeking opportunities to grow as a Software Engineer or AI-ML or Data Engineer in a team-driven environment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="stat-val">5+</div><div class="stat-lbl">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+        <div class="stat-val">10+</div><div class="stat-lbl">Projects Completed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon-wrap"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="stat-val">3+</div><div class="stat-lbl">Research Papers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="stat-val">20+</div><div class="stat-lbl">Tools &amp; Technologies</div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a class="btn-icon" href="https://linkedin.com/in/mumtahina-ahmed" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a class="btn-icon" href="https://github.com/Mumtahina-Ahmed-CSE" target="_blank" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+      <a href="Resume.pdf" download="Resume.pdf" class="btn-pill btn-resume">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+    </div>
+  </div>
+</main>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const root   = document.documentElement;
+  const saved  = localStorage.getItem('portfolio-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('portfolio-theme', next);
+  });
+</script>
+</body>
+</html>
